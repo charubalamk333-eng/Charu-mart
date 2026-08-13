@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Charu Mart | Admin Login</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #061426, #102a43);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 25px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 430px;
+
+            background: #f8f9fa;
+
+            padding: 40px;
+
+            border-radius: 18px;
+
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .brand {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .brand-icon {
+            font-size: 42px;
+            margin-bottom: 8px;
+        }
+
+        .brand h1 {
+            font-size: 28px;
+            letter-spacing: 2px;
+            color: #0b1f36;
+        }
+
+        .brand h1 span {
+            color: #718096;
+        }
+
+        .admin-label {
+            display: inline-block;
+
+            margin-top: 10px;
+
+            padding: 6px 14px;
+
+            border-radius: 20px;
+
+            background: #d9dee5;
+            color: #0b1f36;
+
+            font-size: 12px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: #17202a;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #687385;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #344054;
+
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #c5cbd3;
+
+            border-radius: 8px;
+
+            outline: none;
+
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #718096;
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box input {
+            padding-right: 65px;
+        }
+
+        .show-button {
+            position: absolute;
+
+            right: 8px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            color: #0b1f36;
+
+            cursor: pointer;
+
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .options {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            margin: 15px 0 25px;
+
+            font-size: 12px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .remember input {
+            width: auto;
+        }
+
+        .forgot {
+            color: #0b1f36;
+            text-decoration: none;
+        }
+
+        .login-button {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #0b1f36;
+            color: white;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .login-button:hover {
+            background: #718096;
+        }
+
+        .message {
+            text-align: center;
+
+            margin-top: 15px;
+
+            font-size: 13px;
+        }
+
+        .back {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #687385;
+
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+        .back:hover {
+            color: #0b1f36;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <main class="login-box">
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🛡️
+            </div>
+
+            <h1>
+                CHARU <span>MART</span>
+            </h1>
+
+            <div class="admin-label">
+                ADMIN PORTAL
+            </div>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <h2>
+            Admin Login
+        </h2>
+
+        <p class="description">
+            Login to securely manage Charu Mart.
+        </p>
+
+
+        <form id="adminLoginForm">
+
+            <!-- ADMIN EMAIL -->
+
+            <div class="input-group">
+
+                <label for="adminEmail">
+                    Admin Email
+                </label>
+
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="Enter admin email"
+                    required
+                >
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="input-group">
+
+                <label for="adminPassword">
+                    Password
+                </label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        placeholder="Enter admin password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="show-button"
+                        onclick="togglePassword()"
+                    >
+                        Show
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- OPTIONS -->
+
+            <div class="options">
+
+                <label class="remember">
+
+                    <input type="checkbox">
+
+                    Remember me
+
+                </label>
+
+                <a href="#" class="forgot">
+                    Forgot Password?
+                </a>
+
+            </div>
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                type="submit"
+                class="login-button"
+            >
+                ADMIN LOGIN
+            </button>
+
+
+            <p
+                id="adminMessage"
+                class="message"
+            ></p>
+
+        </form>
+
+
+        <!-- BACK -->
+
+        <a href="index.html" class="back">
+            ← Back to Charu Mart
+        </a>
+
+    </main>
+
+
+    <script>
+
+        function togglePassword() {
+
+            const password =
+                document.getElementById("adminPassword");
+
+            const button =
+                document.querySelector(".show-button");
+
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                button.textContent = "Hide";
+
+            } else {
+
+                password.type = "password";
+
+                button.textContent = "Show";
+
+            }
+
+        }
+
+
+        document
+            .getElementById("adminLoginForm")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                document
+                    .getElementById("adminMessage")
+                    .textContent =
+                    "Admin login submitted.";
+
+            });
+
+    </script>
+
+</body>
+
+</html>

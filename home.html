@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Charu Mart | Home</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6f8;
+            color: #17202a;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 75px;
+            background: #071426;
+            color: white;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 6%;
+
+            gap: 35px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #bfc7d1;
+        }
+
+        /* SEARCH */
+
+        .search-box {
+            flex: 1;
+            max-width: 550px;
+
+            display: flex;
+
+            background: white;
+
+            border-radius: 7px;
+
+            overflow: hidden;
+        }
+
+        .search-box input {
+            flex: 1;
+
+            padding: 12px 15px;
+
+            border: none;
+            outline: none;
+
+            font-size: 14px;
+        }
+
+        .search-box button {
+            width: 50px;
+
+            border: none;
+
+            background: #c5cbd3;
+            color: #071426;
+
+            cursor: pointer;
+
+            font-size: 18px;
+        }
+
+        /* NAV LINKS */
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .nav-links a:hover {
+            color: #c5cbd3;
+        }
+
+        .cart {
+            font-size: 20px;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 400px;
+
+            background: linear-gradient(
+                120deg,
+                #071426,
+                #183b5c
+            );
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+
+            padding: 50px 8%;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-small {
+            color: #c5cbd3;
+
+            letter-spacing: 3px;
+
+            font-size: 13px;
+
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+
+            line-height: 1.15;
+
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: #c5cbd3;
+        }
+
+        .hero p {
+            color: #d5dbe2;
+
+            line-height: 1.6;
+
+            max-width: 500px;
+
+            margin-bottom: 28px;
+        }
+
+        .shop-button {
+            display: inline-block;
+
+            padding: 14px 28px;
+
+            background: #f8f9fa;
+
+            color: #071426;
+
+            text-decoration: none;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .shop-button:hover {
+            background: #c5cbd3;
+        }
+
+        /* CATEGORIES */
+
+        .section {
+            padding: 50px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+
+            color: #071426;
+        }
+
+        .section-title p {
+            color: #718096;
+
+            margin-top: 8px;
+
+            font-size: 14px;
+        }
+
+        .categories {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+        }
+
+        .category {
+            width: 150px;
+
+            height: 130px;
+
+            background: white;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+
+            cursor: pointer;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-icon {
+            font-size: 35px;
+
+            margin-bottom: 10px;
+        }
+
+        .category h3 {
+            font-size: 14px;
+
+            color: #17202a;
+        }
+
+        /* PRODUCTS */
+
+        .products {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 25px;
+        }
+
+        .product {
+            background: white;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 190px;
+
+            background: #e6e9ed;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 65px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            font-size: 16px;
+
+            margin-bottom: 8px;
+        }
+
+        .product-info p {
+            color: #718096;
+
+            font-size: 13px;
+
+            margin-bottom: 12px;
+        }
+
+        .price {
+            color: #071426;
+
+            font-weight: bold;
+
+            font-size: 18px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #071426;
+
+            color: #aeb8c5;
+
+            text-align: center;
+
+            padding: 25px;
+
+            font-size: 12px;
+
+            margin-top: 20px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .navbar {
+                height: auto;
+
+                padding: 20px;
+
+                flex-wrap: wrap;
+
+                gap: 18px;
+            }
+
+            .search-box {
+                order: 3;
+
+                flex-basis: 100%;
+            }
+
+            .nav-links {
+                margin-left: auto;
+            }
+
+            .hero {
+                padding: 50px 7%;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            CHARU <span>MART</span>
+        </div>
+
+
+        <div class="search-box">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search products..."
+    >
+
+    <button
+        type="button"
+        id="searchButton"
+    >
+        🔍
+    </button>
+
+</div>
+
+
+        <nav class="nav-links">
+
+            <a href="#">
+                Home
+            </a>
+
+            <a href="#">
+                Categories
+            </a>
+
+            <a href="#">
+                ❤️
+            </a>
+
+            <a href="#" class="cart">
+                🛒
+            </a>
+
+            <a href="#">
+                👤
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                WELCOME TO CHARU MART
+            </div>
+
+            <h1>
+                Shop Smart.
+                <br>
+                <span>Live Better.</span>
+            </h1>
+
+            <p>
+                Discover quality products at great prices.
+                Explore our collections and find everything
+                you need in one place.
+            </p>
+
+            <a href="#products" class="shop-button">
+                SHOP NOW
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- CATEGORIES -->
+
+    <section class="section">
+
+        <div class="section-title">
+
+            <h2>
+                Shop by Category
+            </h2>
+
+            <p>
+                Explore our popular categories
+            </p>
+
+        </div>
+
+
+        <div class="categories">
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    👕
+                </div>
+
+                <h3>
+                    Fashion
+                </h3>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    📱
+                </div>
+
+                <h3>
+                    Electronics
+                </h3>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    🏠
+                </div>
+
+                <h3>
+                    Home
+                </h3>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    💄
+                </div>
+
+                <h3>
+                    Beauty
+                </h3>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    🎒
+                </div>
+
+                <h3>
+                    Accessories
+                </h3>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">
+                    ⚽
+                </div>
+
+                <h3>
+                    Sports
+                </h3>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- PRODUCTS -->
+
+    <section class="section" id="products">
+
+        <div class="section-title">
+
+            <h2>
+                Featured Products
+            </h2>
+
+            <p>
+                Popular products picked for you
+            </p>
+
+        </div>
+
+
+        <div class="products">
+
+
+            <div class="product" data-name="wireless headphones">
+
+                <div class="product-image">
+                    🎧
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        Wireless Headphones
+                    </h3>
+
+                    <p>
+                        Premium wireless audio
+                    </p>
+
+                    <div class="price">
+                        ₹1,499
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="product" data-name="smart watch">
+
+                <div class="product-image">
+                    ⌚
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        Smart Watch
+                    </h3>
+
+                    <p>
+                        Smart fitness watch
+                    </p>
+
+                    <div class="price">
+                        ₹2,499
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="product" data-name="running shoes">
+
+                <div class="product-image">
+                    👟
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        Running Shoes
+                    </h3>
+
+                    <p>
+                        Comfortable everyday shoes
+                    </p>
+
+                    <div class="price">
+                        ₹1,999
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="product" data-name="premium backpack">
+
+                <div class="product-image">
+                    🎒
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        Premium Backpack
+                    </h3>
+
+                    <p>
+                        Stylish everyday backpack
+                    </p>
+
+                    <div class="price">
+                        ₹999
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        © 2026 Charu Mart | Shop More. Save More.
+
+    </footer>
+<script>
+
+    const searchInput = document.getElementById("searchInput");
+    const searchButton = document.getElementById("searchButton");
+
+    const products = document.querySelectorAll(".product");
+
+    function searchProducts() {
+
+        const searchText =
+            searchInput.value.toLowerCase().trim();
+
+        products.forEach(function(product) {
+
+            const productName =
+                product.getAttribute("data-name");
+
+            if (productName.includes(searchText)) {
+                product.style.display = "";
+            } else {
+                product.style.display = "none";
+            }
+
+        });
+
+    }
+
+    searchButton.addEventListener("click", searchProducts);
+
+    searchInput.addEventListener("input", searchProducts);
+
+</script>
+
+</body>
+</html>

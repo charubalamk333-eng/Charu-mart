@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Charu Mart | Choose Account</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #061426, #102a43);
+            color: #ffffff;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            text-align: center;
+        }
+
+        /* LOGO */
+
+        .brand-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .logo {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .logo span {
+            color: #c5cbd3;
+        }
+
+        .tagline {
+            margin-top: 10px;
+            color: #aeb8c5;
+            letter-spacing: 2px;
+            font-size: 14px;
+        }
+
+        /* TITLE */
+
+        .welcome {
+            margin-top: 55px;
+        }
+
+        .welcome h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #aeb8c5;
+            font-size: 15px;
+        }
+
+        /* ROLE CARDS */
+
+        .roles {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .role-card {
+            width: 300px;
+            min-height: 310px;
+
+            background: #f8f9fa;
+            color: #17202a;
+
+            border-radius: 18px;
+
+            padding: 35px 25px;
+
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+
+        .role-card:hover {
+            transform: translateY(-10px);
+
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ICON */
+
+        .role-icon {
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            background: #102a43;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 32px;
+        }
+
+        /* CARD TEXT */
+
+        .role-card h3 {
+            font-size: 23px;
+            color: #0b1f36;
+
+            margin-bottom: 12px;
+        }
+
+        .role-card p {
+            color: #687385;
+
+            font-size: 14px;
+            line-height: 1.6;
+
+            min-height: 45px;
+
+            margin-bottom: 25px;
+        }
+
+        /* BUTTON */
+
+        .role-button {
+            display: inline-block;
+
+            width: 100%;
+
+            padding: 13px 20px;
+
+            background: #0b1f36;
+            color: #ffffff;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+        }
+
+        .role-button:hover {
+            background: #718096;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            margin-top: 45px;
+
+            color: #8995a5;
+
+            font-size: 12px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .logo {
+                font-size: 32px;
+            }
+
+            .welcome {
+                margin-top: 40px;
+            }
+
+            .welcome h2 {
+                font-size: 25px;
+            }
+
+            .role-card {
+                width: 100%;
+                max-width: 350px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <main class="container">
+
+        <!-- BRAND -->
+
+        <div class="brand-icon">
+            🛍️
+        </div>
+
+        <h1 class="logo">
+            CHARU <span>MART</span>
+        </h1>
+
+        <p class="tagline">
+            SHOP MORE. SAVE MORE.
+        </p>
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome">
+
+            <h2>
+                Welcome to Charu Mart
+            </h2>
+
+            <p>
+                Choose how you want to continue
+            </p>
+
+        </section>
+
+
+        <!-- ROLES -->
+
+        <section class="roles">
+
+
+            <!-- BUYER -->
+
+            <div class="role-card">
+
+                <div class="role-icon">
+                    🛒
+                </div>
+
+                <h3>
+                    Buyer
+                </h3>
+
+                <p>
+                    Browse products, place orders
+                    and manage your purchases.
+                </p>
+
+                <a href="login.html" class="role-button">
+                    BUYER LOGIN
+                </a>
+
+            </div>
+
+
+            <!-- SELLER -->
+
+            <div class="role-card">
+
+                <div class="role-icon">
+                    🏪
+                </div>
+
+                <h3>
+                    Seller
+                </h3>
+
+                <p>
+                    Manage your products, orders
+                    and online store.
+                </p>
+
+                <a href="seller-login.html" class="role-button">
+                    SELLER LOGIN
+                </a>
+
+            </div>
+
+
+            <!-- ADMIN -->
+
+            <div class="role-card">
+
+                <div class="role-icon">
+                    🛡️
+                </div>
+
+                <h3>
+                    Admin
+                </h3>
+
+                <p>
+                    Manage users, sellers, products
+                    and the marketplace.
+                </p>
+
+                <a href="admin-login.html" class="role-button">
+                    ADMIN LOGIN
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="footer">
+
+            © 2026 Charu Mart. All rights reserved.
+
+        </footer>
+
+    </main>
+
+</body>
+
+</html>
