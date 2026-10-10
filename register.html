@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charu Mart | Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <section class="brand-section">
+            <div class="brand-content">
+                <div class="brand-icon">🛍️</div>
+                <h1>CHARU <span>MART</span></h1>
+                <p class="tagline">SHOP MORE. SAVE MORE.</p>
+                <div class="line"></div>
+
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">✦</div>
+                        <h3>Premium</h3>
+                        <p>Quality</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">✓</div>
+                        <h3>Secure</h3>
+                        <p>Shopping</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">▣</div>
+                        <h3>Fast</h3>
+                        <p>Delivery</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">♧</div>
+                        <h3>24/7</h3>
+                        <p>Support</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <div class="login-container">
+
+                <p class="welcome-small">JOIN CHARU MART</p>
+                <h2>Create your account</h2>
+                <p class="login-description">
+                    Register to start shopping with us.
+                </p>
+
+                <form id="registerForm" novalidate>
+
+                    <div class="input-group">
+                        <label for="name">Full Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            maxlength="80"
+                            required
+                        >
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <div class="password-box">
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Create a strong password"
+                                autocomplete="new-password"
+                                required
+                            >
+                            <button type="button" id="togglePassword">
+                                Show
+                            </button>
+                        </div>
+                        <small>
+                            At least 8 characters, with uppercase,
+                            lowercase, a number and a special character.
+                        </small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Re-enter your password"
+                            autocomplete="new-password"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="login-button">
+                        CREATE ACCOUNT
+                    </button>
+
+                    <p id="registerMessage" class="login-message"
+                       aria-live="polite"></p>
+
+                </form>
+
+                <p class="register-text">
+                    Already have an account?
+                    <a href="login.html">Login</a>
+                </p>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script src="register.js"></script>
+
+</body>
+</html>

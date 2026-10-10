@@ -427,7 +427,7 @@
                 ❤️
             </a>
 
-            <a href="#" class="cart">
+            <a href="#" class="cart">-
                 🛒
             </a>
 
@@ -594,7 +594,7 @@
         </div>
 
 
-        <div class="products">
+        <div class="products" id="productContainer"></div>
 
 
             <div class="product" data-name="wireless headphones">
@@ -700,7 +700,21 @@
         </div>
 
     </section>
+<!-- CART SECTION -->
+<section class="section" id="cart">
 
+    <div class="section-title">
+        <h2>Your Cart</h2>
+        <p>Items you added to your cart</p>
+    </div>
+
+    <div id="cartContainer"></div>
+    <button onclick="placeOrder()"
+    style="padding: 12px 24px; background: #071426; color: white; border: none; border-radius: 6px; cursor: pointer;">
+    Place Order
+</button>
+
+</section>
 
 
     <!-- FOOTER -->
@@ -741,6 +755,318 @@
 
     searchInput.addEventListener("input", searchProducts);
 
+
+fetch("http://localhost:8080/api/products")
+    .then(response => response.json())
+    .then(products => {
+
+        const productContainer =
+            document.getElementById("productContainer");
+
+        productContainer.innerHTML = "";
+
+        products.forEach(product => {
+
+            const productCard = document.createElement("div");
+
+            productCard.className = "product";
+
+            productCard.innerHTML = `
+    <div class="product-image">
+        <img src="${product.imageUrl}" 
+             alt="${product.name}"
+             style="width:100%; height:100%; object-fit:contain;">
+    </div>
+
+    <div class="product-info">
+        <h3>${product.name}</h3>
+
+        <p>${product.description}</p>
+
+        <h4>₹${product.price}</h4>
+
+        <button onclick="addToCart(${product.id})">Add to Cart</button>
+    </div>
+`;
+
+            productContainer.appendChild(productCard);
+        });
+    })
+    .catch(error => {
+        console.error("Error loading products:", error);
+    });
+    function addToCart(productId) {
+
+    const loggedInUser = JSON.parse(
+    sessionStorage.getItem("charuMartUser") || "null"
+);
+
+if (!loggedInUser || !loggedInUser.id) {
+    alert("Please log in before adding products to your cart.");
+    window.location.href = "login.html";
+    return;
+}
+
+const cartItem = {
+    userId: loggedInUser.id,
+    productId: productId,
+    quantity: 1
+};
+
+    fetch("http://localhost:8080/api/cart", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(cartItem)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Failed to add product to cart");
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Cart item saved:", data);
+        alert("Product added to cart!");
+    })
+    .catch(error => {
+        console.error("Cart error:", error);
+        alert("Could not add product to cart.");
+    });
+}
+async function displayCart() {
+    const cartContainer = document.getElementById("cartContainer");
+
+    cartContainer.innerHTML = "<p>Loading cart...</p>";
+
+    try {
+        const cartResponse = await fetch("http://localhost:8080/api/cart");
+
+        if (!cartResponse.ok) {
+            throw new Error("Failed to load cart");
+        }
+
+        const cart = await cartResponse.json();
+
+        if (!cart.length) {
+            cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+            return;
+        }
+
+        const productResponse = await fetch("http://localhost:8080/api/products");
+
+        if (!productResponse.ok) {
+            throw new Error("Failed to load products");
+        }
+
+        const products = await productResponse.json();
+
+        cartContainer.innerHTML = "";
+        let total = 0;
+        let displayedItems = 0;
+
+        for (const item of cart) {
+            const product = products.find(
+                p => Number(p.id) === Number(item.productId)
+            );
+
+            if (!product) {
+                console.error("Product not found for cart item:", item);
+                continue;
+            }
+
+            const quantity = Number(item.quantity);
+            const price = Number(product.price);
+            total += price * quantity;
+            displayedItems++;
+
+            const cartItem = document.createElement("div");
+
+            cartItem.style.cssText =
+                "background:white;padding:20px;margin-bottom:15px;" +
+                "border-radius:10px;box-shadow:0 3px 12px #0001;";
+
+            cartItem.innerHTML = `
+                <h3>${product.name}</h3>
+                <p>${product.description ?? ""}</p>
+                <p>Price: ₹${price.toFixed(2)}</p>
+
+                <div style="display:flex;align-items:center;gap:12px;margin:10px 0;">
+                    <button onclick="changeQuantity(${item.cartId}, -1)">−</button>
+                    <span>Quantity: ${quantity}</span>
+                    <button onclick="changeQuantity(${item.cartId}, 1)">+</button>
+                    <button onclick="removeFromCart(${item.cartId})">Remove</button>
+                </div>
+            `;
+
+            cartContainer.appendChild(cartItem);
+        }
+
+        if (displayedItems === 0) {
+            cartContainer.innerHTML =
+                "<p>Your cart item exists, but its product details could not be found.</p>";
+            return;
+        }
+
+        const totalElement = document.createElement("h2");
+        totalElement.textContent = `Total: ₹${total.toFixed(2)}`;
+        totalElement.style.marginTop = "20px";
+        cartContainer.appendChild(totalElement);
+
+    } catch (error) {
+        console.error("Cart loading error:", error);
+        cartContainer.innerHTML =
+            "<p>Could not load cart. Please check the browser console.</p>";
+    }
+}
+displayCart();
+
+function showCart() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+
+    let message = "Your Cart:\n\n";
+
+    cart.forEach(item => {
+        message += "Product ID: " + item.id +
+                   "\nQuantity: " + item.quantity + "\n\n";
+    });
+
+    alert(message);
+}
+displayCart();
+
+function showCart() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+
+    let message = "Your Cart:\n\n";
+
+    cart.forEach(item => {
+        message += "Product ID: " + item.id +
+                   "\nQuantity: " + item.quantity + "\n\n";
+    });
+
+    alert(message);
+}
+function changeQuantity(cartId, change) {
+    fetch("http://localhost:8080/api/cart")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Could not load cart");
+            }
+            return response.json();
+        })
+        .then(cart => {
+            const item = cart.find(item => item.cartId === cartId);
+
+            if (!item) {
+                throw new Error("Cart item not found");
+            }
+
+            const newQuantity = item.quantity + change;
+
+            if (newQuantity <= 0) {
+                return fetch(`http://localhost:8080/api/cart/${cartId}`, {
+                    method: "DELETE"
+                });
+            }
+
+            return fetch(`http://localhost:8080/api/cart/${cartId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    quantity: newQuantity
+                })
+            });
+        })
+        .then(response => {
+            if (response && !response.ok) {
+                throw new Error("Could not update cart");
+            }
+
+            displayCart();
+        })
+        .catch(error => {
+            console.error("Quantity update error:", error);
+            alert("Could not update quantity. Please try again.");
+        });
+}
+
+function removeFromCart(cartId) {
+    fetch(`http://localhost:8080/api/cart/${cartId}`, {
+        method: "DELETE"
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Failed to remove cart item");
+        }
+
+        displayCart();
+    })
+    .catch(error => {
+        console.error("Remove cart error:", error);
+        alert("Could not remove the item. Please try again.");
+    });
+}
+async function placeOrder() {
+    try {
+        const response = await fetch("http://localhost:8080/api/cart");
+
+        if (!response.ok) {
+            throw new Error("Could not load cart");
+        }
+
+        const cart = await response.json();
+
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+            return;
+        }
+
+        const orderResponse = await fetch("http://localhost:8080/api/orders", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+    userId: JSON.parse(
+        sessionStorage.getItem("charuMartUser") || "null"
+    )?.id
+})
+        });
+
+        if (!orderResponse.ok) {
+            const errorText = await orderResponse.text();
+            throw new Error(errorText || "Could not place order");
+        }
+
+        const order = await orderResponse.json();
+
+        alert(
+            "Order placed successfully! 🎉\n" +
+            "Order ID: " + order.orderId + "\n" +
+            "Total: ₹" + order.totalAmount
+        );
+
+        await displayCart();
+
+    } catch (error) {
+        console.error("Place order error:", error);
+        alert("Could not place order. Please check the console and try again.");
+    }
+}
 </script>
 
 </body>
